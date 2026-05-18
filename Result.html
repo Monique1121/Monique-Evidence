@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>prueba_3.txt</title>
+    <link rel="stylesheet" href="colors.css">
+  </head>
+  <body>
+    <pre>
+<span class='comment'># Test 2: Data structures, pattern matching and pipes</span>
+<span class='comment'># Arantza Monique Mercado Moreno</span>
+ 
+<span class='reserved_word'>defmodule</span> <span class='module'>DataHandler</span> <span class='reserved_word'>do</span>
+ 
+  <span class='attribute'>@moduledoc</span> <span class='string'>"Examples of structs, atoms, sigils and pipes"</span>
+ 
+  <span class='reserved_word'>defstruct</span> <span class='puntuaction'>[</span><span class='atom'>:name</span><span class='puntuaction'>,</span> <span class='atom'>:age</span><span class='puntuaction'>,</span> <span class='atom'>:email</span><span class='puntuaction'>]</span>
+ 
+  <span class='comment'># Atoms and booleans</span>
+  <span class='attribute'>@valid_roles</span> <span class='puntuaction'>[</span><span class='atom'>:admin</span><span class='puntuaction'>,</span> <span class='atom'>:user</span><span class='puntuaction'>,</span> <span class='atom'>:guest</span><span class='puntuaction'>]</span>
+  <span class='attribute'>@debug</span> <span class='boolean'>true</span>
+ 
+  <span class='comment'># Pattern matching with tuples</span>
+  <span class='reserved_word'>def</span> <span class='function'>handle_result</span><span class='puntuaction'>(</span><span class='puntuaction'>{</span><span class='atom'>:ok</span><span class='puntuaction'>,</span> <span class='variable'>value</span><span class='puntuaction'>}</span><span class='puntuaction'>)</span> <span class='reserved_word'>do</span>
+    <span class='module'>IO</span><span class='puntuaction'>.</span><span class='function'>puts</span><span class='puntuaction'>(</span><span class='string'>"Success: #{value}"</span><span class='puntuaction'>)</span>
+    <span class='puntuaction'>{</span><span class='atom'>:ok</span><span class='puntuaction'>,</span> <span class='variable'>value</span><span class='puntuaction'>}</span>
+  <span class='reserved_word'>end</span>
+ 
+  <span class='reserved_word'>def</span> <span class='function'>handle_result</span><span class='puntuaction'>(</span><span class='puntuaction'>{</span><span class='atom'>:error</span><span class='puntuaction'>,</span> <span class='variable'>reason</span><span class='puntuaction'>}</span><span class='puntuaction'>)</span> <span class='reserved_word'>do</span>
+    <span class='module'>IO</span><span class='puntuaction'>.</span><span class='function'>puts</span><span class='puntuaction'>(</span><span class='string'>"Error: #{reason}"</span><span class='puntuaction'>)</span>
+    <span class='puntuaction'>{</span><span class='atom'>:error</span><span class='puntuaction'>,</span> <span class='variable'>reason</span><span class='puntuaction'>}</span>
+  <span class='reserved_word'>end</span>
+ 
+  <span class='reserved_word'>def</span> <span class='function'>handle_result</span><span class='puntuaction'>(</span><span class='boolean'>nil</span><span class='puntuaction'>)</span><span class='puntuaction'>,</span> <span class='keyword'>do:</span> <span class='puntuaction'>{</span><span class='atom'>:error</span><span class='puntuaction'>,</span> <span class='atom'>:null_value</span><span class='puntuaction'>}</span>
+ 
+  <span class='comment'># Sigils: regex and word lists</span>
+  <span class='reserved_word'>def</span> <span class='function'>validate_email</span><span class='puntuaction'>(</span><span class='variable'>email</span><span class='puntuaction'>)</span> <span class='reserved_word'>do</span>
+    <span class='variable'>pattern</span> <span class='operator'>=</span> <span class='sigil'>~r</span><span class='operator'>/</span><span class='operator'>^</span><span class='puntuaction'>[</span>\<span class='variable'>w</span><span class='puntuaction'>.</span><span class='puntuaction'>]</span><span class='operator'>+</span><span class='operator'>@</span><span class='puntuaction'>[</span>\<span class='variable'>w</span><span class='puntuaction'>.</span><span class='puntuaction'>]</span><span class='operator'>+</span>\<span class='puntuaction'>.</span>\<span class='variable'>w</span><span class='puntuaction'>{</span><span class='number'>2</span><span class='puntuaction'>,</span><span class='number'>4</span><span class='puntuaction'>}</span>$<span class='operator'>/</span>
+    <span class='module'>Regex</span><span class='puntuaction'>.</span><span class='function'>match?</span><span class='puntuaction'>(</span><span class='variable'>pattern</span><span class='puntuaction'>,</span> <span class='variable'>email</span><span class='puntuaction'>)</span>
+  <span class='reserved_word'>end</span>
+ 
+  <span class='reserved_word'>def</span> <span class='variable'>weekdays</span> <span class='reserved_word'>do</span>
+    <span class='sigil'>~w</span><span class='puntuaction'>(</span><span class='variable'>monday</span> <span class='variable'>tuesday</span> <span class='variable'>wednesday</span> <span class='variable'>thursday</span> <span class='variable'>friday</span><span class='puntuaction'>)</span>
+  <span class='reserved_word'>end</span>
+ 
+  <span class='comment'># Pipe operator and string operations</span>
+  <span class='reserved_word'>def</span> <span class='function'>format_name</span><span class='puntuaction'>(</span><span class='variable'>first</span><span class='puntuaction'>,</span> <span class='variable'>last</span><span class='puntuaction'>)</span> <span class='reserved_word'>do</span>
+    <span class='variable'>first</span>
+    <span class='operator'>|&gt;</span> <span class='module'>String</span><span class='puntuaction'>.</span><span class='function'>trim</span><span class='puntuaction'>(</span><span class='puntuaction'>)</span>
+    <span class='operator'>|&gt;</span> <span class='module'>String</span><span class='puntuaction'>.</span><span class='function'>capitalize</span><span class='puntuaction'>(</span><span class='puntuaction'>)</span>
+    <span class='operator'>|&gt;</span> <span class='module'>Kernel</span><span class='puntuaction'>.</span><span class='operator'>&lt;&gt;</span><span class='puntuaction'>(</span><span class='string'>" "</span><span class='puntuaction'>)</span>
+    <span class='operator'>|&gt;</span> <span class='module'>Kernel</span><span class='puntuaction'>.</span><span class='operator'>&lt;&gt;</span><span class='puntuaction'>(</span><span class='module'>String</span><span class='puntuaction'>.</span><span class='function'>capitalize</span><span class='puntuaction'>(</span><span class='variable'>last</span><span class='puntuaction'>)</span><span class='puntuaction'>)</span>
+  <span class='reserved_word'>end</span>
+ 
+  <span class='comment'># Case and cond</span>
+  <span class='reserved_word'>def</span> <span class='function'>classify_age</span><span class='puntuaction'>(</span><span class='variable'>age</span><span class='puntuaction'>)</span> <span class='reserved_word'>do</span>
+    <span class='reserved_word'>cond</span> <span class='reserved_word'>do</span>
+      <span class='variable'>age</span> <span class='operator'>&lt;</span> <span class='number'>0</span>   <span class='operator'>-&gt;</span> <span class='puntuaction'>{</span><span class='atom'>:error</span><span class='puntuaction'>,</span> <span class='atom'>:invalid</span><span class='puntuaction'>}</span>
+      <span class='variable'>age</span> <span class='operator'>&lt;</span> <span class='number'>13</span>  <span class='operator'>-&gt;</span> <span class='puntuaction'>{</span><span class='atom'>:ok</span><span class='puntuaction'>,</span> <span class='atom'>:child</span><span class='puntuaction'>}</span>
+      <span class='variable'>age</span> <span class='operator'>&lt;</span> <span class='number'>18</span>  <span class='operator'>-&gt;</span> <span class='puntuaction'>{</span><span class='atom'>:ok</span><span class='puntuaction'>,</span> <span class='atom'>:teenager</span><span class='puntuaction'>}</span>
+      <span class='variable'>age</span> <span class='operator'>&lt;</span> <span class='number'>65</span>  <span class='operator'>-&gt;</span> <span class='puntuaction'>{</span><span class='atom'>:ok</span><span class='puntuaction'>,</span> <span class='atom'>:adult</span><span class='puntuaction'>}</span>
+      <span class='boolean'>true</span>      <span class='operator'>-&gt;</span> <span class='puntuaction'>{</span><span class='atom'>:ok</span><span class='puntuaction'>,</span> <span class='atom'>:senior</span><span class='puntuaction'>}</span>
+    <span class='reserved_word'>end</span>
+  <span class='reserved_word'>end</span>
+ 
+  <span class='comment'># Anonymous functions and captures</span>
+  <span class='reserved_word'>def</span> <span class='function'>apply_discount</span><span class='puntuaction'>(</span><span class='variable'>prices</span><span class='puntuaction'>,</span> <span class='variable'>percent</span><span class='puntuaction'>)</span> <span class='reserved_word'>do</span>
+    <span class='capture'>&amp;1</span><span class='capture'>&amp;1</span><span class='capture'>&amp;1</span><span class='capture'>&amp;1</span> <span class='capture'>&amp;1</span><span class='capture'>&amp;1</span><span class='capture'>&amp;1</span> <span class='operator'>*</span> <span class='puntuaction'>(</span><span class='number'>1</span> <span class='operator'>-</span> <span class='variable'>percent</span> <span class='operator'>/</span> <span class='number'>100</span><span class='puntuaction'>)</span><span class='puntuaction'>)</span>
+    <span class='module'>Enum</span><span class='puntuaction'>.</span><span class='function'>map</span><span class='puntuaction'>(</span><span class='variable'>prices</span><span class='puntuaction'>,</span> <span class='variable'>discount</span><span class='puntuaction'>)</span>
+  <span class='reserved_word'>end</span>
+ 
+  <span class='comment'># Map and pattern matching</span>
+  <span class='reserved_word'>def</span> <span class='function'>get_user_role</span><span class='puntuaction'>(</span>%<span class='puntuaction'>{</span><span class='variable'>role</span><span class='puntuaction'>:</span> <span class='variable'>role</span><span class='puntuaction'>}</span><span class='puntuaction'>)</span> <span class='reserved_word'>when</span> <span class='variable'>role</span> <span class='reserved_word'>in</span> <span class='attribute'>@valid_roles</span> <span class='reserved_word'>do</span>
+    <span class='puntuaction'>{</span><span class='atom'>:ok</span><span class='puntuaction'>,</span> <span class='variable'>role</span><span class='puntuaction'>}</span>
+  <span class='reserved_word'>end</span>
+ 
+  <span class='reserved_word'>def</span> <span class='function'>get_user_role</span><span class='puntuaction'>(</span><span class='ignored_variable'>_</span><span class='puntuaction'>)</span><span class='puntuaction'>,</span> <span class='keyword'>do:</span> <span class='puntuaction'>{</span><span class='atom'>:error</span><span class='puntuaction'>,</span> <span class='atom'>:unknown_role</span><span class='puntuaction'>}</span>
+ 
+  <span class='comment'># List comprehension with for</span>
+  <span class='reserved_word'>def</span> <span class='function'>even_squares</span><span class='puntuaction'>(</span><span class='variable'>n</span><span class='puntuaction'>)</span> <span class='reserved_word'>do</span>
+    <span class='reserved_word'>for</span> <span class='variable'>x</span> <span class='operator'>&lt;-</span> <span class='number'>1</span><span class='puntuaction'>.</span><span class='puntuaction'>.</span><span class='variable'>n</span><span class='puntuaction'>,</span> <span class='function'>rem</span><span class='puntuaction'>(</span><span class='variable'>x</span><span class='puntuaction'>,</span> <span class='number'>2</span><span class='puntuaction'>)</span> <span class='operator'>==</span> <span class='number'>0</span> <span class='reserved_word'>do</span>
+      <span class='variable'>x</span> <span class='operator'>*</span> <span class='variable'>x</span>
+    <span class='reserved_word'>end</span>
+  <span class='reserved_word'>end</span>
+ 
+  <span class='comment'># Try, rescue, raise</span>
+  <span class='reserved_word'>def</span> <span class='function'>safe_divide</span><span class='puntuaction'>(</span><span class='ignored_variable'>_x</span><span class='puntuaction'>,</span> <span class='number'>0</span><span class='puntuaction'>)</span> <span class='reserved_word'>do</span>
+    <span class='reserved_word'>raise</span> <span class='module'>ArgumentError</span><span class='puntuaction'>,</span> <span class='variable'>message</span><span class='puntuaction'>:</span> <span class='string'>"cannot divide by zero"</span>
+  <span class='reserved_word'>end</span>
+ 
+  <span class='reserved_word'>def</span> <span class='function'>safe_divide</span><span class='puntuaction'>(</span><span class='variable'>x</span><span class='puntuaction'>,</span> <span class='variable'>y</span><span class='puntuaction'>)</span> <span class='reserved_word'>do</span>
+    <span class='reserved_word'>try</span> <span class='reserved_word'>do</span>
+      <span class='puntuaction'>{</span><span class='atom'>:ok</span><span class='puntuaction'>,</span> <span class='variable'>x</span> <span class='operator'>/</span> <span class='variable'>y</span><span class='puntuaction'>}</span>
+    <span class='reserved_word'>rescue</span>
+      <span class='variable'>e</span> <span class='reserved_word'>in</span> <span class='module'>ArithmeticError</span> <span class='operator'>-&gt;</span> <span class='puntuaction'>{</span><span class='atom'>:error</span><span class='puntuaction'>,</span> <span class='variable'>e</span><span class='puntuaction'>}</span>
+    <span class='reserved_word'>end</span>
+  <span class='reserved_word'>end</span>
+ 
+<span class='reserved_word'>end</span>
+    </pre>
+  </body>
+</html>

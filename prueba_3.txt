@@ -1,90 +1,59 @@
-# Test 2: Data structures, pattern matching and pipes
+# Test 1: Math operations and recursion
 # Arantza Monique Mercado Moreno
  
-defmodule DataHandler do
+defmodule MathUtils do
  
-  @moduledoc "Examples of structs, atoms, sigils and pipes"
+  @moduledoc "Basic math utilities"
+  @pi 3.14159
  
-  defstruct [:name, :age, :email]
- 
-  # Atoms and booleans
-  @valid_roles [:admin, :user, :guest]
-  @debug true
- 
-  # Pattern matching with tuples
-  def handle_result({:ok, value}) do
-    IO.puts("Success: #{value}")
-    {:ok, value}
+  # Factorial using recursion
+  def factorial(0), do: 1
+  def factorial(n) when n > 0 do
+    n * factorial(n - 1)
   end
  
-  def handle_result({:error, reason}) do
-    IO.puts("Error: #{reason}")
-    {:error, reason}
+  # Fibonacci sequence
+  def fibonacci(0), do: 0
+  def fibonacci(1), do: 1
+  def fibonacci(n) do
+    fibonacci(n - 1) + fibonacci(n - 2)
   end
  
-  def handle_result(nil), do: {:error, :null_value}
- 
-  # Sigils: regex and word lists
-  def validate_email(email) do
-    pattern = ~r/^[\w.]+@[\w.]+\.\w{2,4}$/
-    Regex.match?(pattern, email)
+  # Sum of a list using recursion
+  defp sum_list([], acc), do: acc
+  defp sum_list([head | tail], acc) do
+    sum_list(tail, acc + head)
   end
  
-  def weekdays do
-    ~w(monday tuesday wednesday thursday friday)
+  def sum(list), do: sum_list(list, 0)
+ 
+  # Circle area using @pi attribute
+  def circle_area(radius) do
+    @pi * radius * radius
   end
  
-  # Pipe operator and string operations
-  def format_name(first, last) do
-    first
-    |> String.trim()
-    |> String.capitalize()
-    |> Kernel.<>(" ")
-    |> Kernel.<>(String.capitalize(last))
+  # Check if a number is prime
+  def is_prime?(n) when n < 2, do: false
+  def is_prime?(2), do: true
+  def is_prime?(n) do
+    limit = :math.sqrt(n) |> trunc()
+    not Enum.any?(2..limit, fn i -> rem(n, i) == 0 end)
   end
  
-  # Case and cond
-  def classify_age(age) do
-    cond do
-      age < 0   -> {:error, :invalid}
-      age < 13  -> {:ok, :child}
-      age < 18  -> {:ok, :teenager}
-      age < 65  -> {:ok, :adult}
-      true      -> {:ok, :senior}
-    end
+  # Convert hex string to integer
+  def hex_to_int(hex_str) do
+    String.to_integer(hex_str, 0xFF)
   end
  
-  # Anonymous functions and captures
-  def apply_discount(prices, percent) do
-    discount = &(&1 * (1 - percent / 100))
-    Enum.map(prices, discount)
-  end
- 
-  # Map and pattern matching
-  def get_user_role(%{role: role}) when role in @valid_roles do
-    {:ok, role}
-  end
- 
-  def get_user_role(_), do: {:error, :unknown_role}
- 
-  # List comprehension with for
-  def even_squares(n) do
-    for x <- 1..n, rem(x, 2) == 0 do
-      x * x
-    end
-  end
- 
-  # Try, rescue, raise
-  def safe_divide(_x, 0) do
-    raise ArgumentError, message: "cannot divide by zero"
-  end
- 
-  def safe_divide(x, y) do
-    try do
-      {:ok, x / y}
-    rescue
-      e in ArithmeticError -> {:error, e}
-    end
+  # Binary and octal literals
+  def show_literals do
+    binary  = 0b1010
+    octal   = 0o777
+    hex     = 0xFF
+    float   = 1.5e3
+    char    = ?A
+    {binary, octal, hex, float, char}
   end
  
 end
+ 
