@@ -4,6 +4,12 @@ Arantza Monique Mercado Moreno      |      A01786962
 
 E1 Syntax Highlighter
 
+How tu run:
+
+iex "E1_syntax.exs" 
+
+TecFiles.syntax("prueba.txt")
+
 Tokens that the lexer identifies:
 
 comment:  # text
