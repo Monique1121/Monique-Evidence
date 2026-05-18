@@ -1,0 +1,241 @@
+# Arantza Monique Mercado Moreno
+# Activity 2.1 Functional programming, part 1
+
+&1
+
+&Function.identity/1
+
+"uwu"
+
+sign()
+factorial()
+is_atom?()
+save!()
+do_something()
+
+:+
+:-
+:*
+:/
+:==
+:!=
+:>
+:
+:>=
+:<=
+
+:"uwu"
+
+__MODULE__
+
+:"normal"
+
+@doc, @spec, @moduledoc
+
+|>, <>, ++, --, ==, !=, ===, !==, =~, <=, >=, <, >, =, +, -, *, /, ->, <-, =>, ::, &, @, ^
+
+42, 3.14, 1_000, 0xFF, 0b1010, 0o777, 1e10, ?é
+
+~r
+~s
+~w
+~c
+
+
+@doc
+
+|> File.stream!()
+
+defmodule Ariel1 do
+
+  # 1. fahrenheit_to_celsius: function that takes a temperature F in Fahrenheit and converts it to the equivalent in Celsius
+
+  def fahrenheit_to_celsius(temperature) do
+    5 * (temperature - 32) / 9   10e10
+  end
+
+  # 2. roots: function that returns one of the solutions to a quadratic equation, given the three coefficients a,b and c given as inputs.
+
+  def roots(a, b, c) do
+    (- b + :math.sqrt(pow(b, 2) - 4 * a * c))  / (2*a)
+  end
+
+  # 3. sign: function that takes an integer value n and returns different values depending on the value of n.
+
+  def sign(n) do
+    cond do
+    n < 0 -> -1
+    n > 0 -> 1
+    n == 0 -> 0
+    end
+  end
+
+  # 4. bmi: function that determines if the proportion of a person’s weight and height is adequate.
+
+  def bmi(weight, height) do
+    bmi = weight / pow (height, 2)
+    cond do
+        bmi < 20 -> :underweight
+        20 <= bmi and bmi < 25 -> :normal
+        25 <= bmi and bmi < 30 -> :obese1
+        30 <= bmi and bmi < 40 -> :obese2
+        40 <= bmi -> :obese3
+    end
+
+  end
+
+  # 5. factorial: function that  takes a positive integer n and returns the corresponding factorial value.
+
+  def factorial(n), do: do_tail_factorial(n, 1)
+  defp do_tail_factorial(0, a), do: a
+  defp do_tail_factorial(n, a), do: do_tail_factorial(n - 1, n * a)
+
+  # 6. pow: function that returns the value of a elevated to the power of b.
+
+  def pow(a, b), do: do_pow(a, b, 1)
+  defp do_pow(_a, 0, c), do: c
+  defp do_pow(a, b, c), do: do_pow(a, b - 1, c * a)
+
+  # 7. fib: function that takes a positive integer n and returns the nth element in the Fibonacci sequence.
+
+  def fib(n) do
+    if n <= 1 do
+        n
+    else
+        fib(n - 1) + fib(n - 2)
+    end
+  end
+
+  # 8. duplicate: function that takes a list lst as input and returns a new list where each element in the original is duplicated.
+
+  def duplicate(data), do: do_duplicate(data, [])
+  defp do_duplicate([], res), do: Enum.reverse(res)
+  defp do_duplicate([head | tail], res), do: do_duplicate(tail, [head, head | res])
+
+  # 9. enlist: function that takes a list lst and returns a new list where each element is placed inside a sub-list.
+
+  def enlist(data), do: do_enlist(data, [])
+  defp do_enlist([], res), do: Enum.reverse(res)
+  defp do_enlist([head | tail], res), do: do_enlist(tail, [(head) | res])
+
+  # 10. positives: function that takes a list of integers lst and returns a new list with only the positive numbers in lst.
+
+  def positives(data), do: do_positives(data, [])
+  defp do_positives([], res), do: Enum.reverse(res)
+  defp do_positives([head | tail], res) do
+    if head > 0 do
+        do_positives(tail, [head | res])
+    else
+        do_positives(tail, res)
+    end
+  end
+
+  # 11. add_list: function that returns the sum of the numbers contained in the input lst.
+
+  def add_list(data), do: do_add_list(data, 0)
+  defp do_add_list([], res), do: res
+  defp do_add_list([head | tail], res), do: do_add_list(tail, head + res)
+
+  # 12. invert_pairs: function that returns a new list where the two elements in each tuple invert their place.
+
+  def invert_pairs(data), do: do_invert_pairs(data, [])
+  defp do_invert_pairs([], res), do: Enum.reverse(res)
+  defp do_invert_pairs([{a, b} | tail], _res), do: [{b, a} | invert_pairs(tail)]
+
+  # 13. is_atom_list: function that returns true if every element in lst is a symbol/atom, and false otherwise.
+
+  def is_atom_list([]), do: true
+  def is_atom_list([head | tail]) do
+    if is_atom(head) do
+        true
+        is_atom_list(tail)
+    else
+        false
+    end
+  end
+
+  # 14. swapper: function that returns a new list, where every occurrence of a is substituted by b and every occurrence of b is substituted by a.
+
+  def swapper(data, a, b), do: do_swapper(data, a, b, [])
+  defp do_swapper([], _a, _prueba, res), do: Enum.reverse(res)
+  defp do_swapper([head | tail], a, b, res) do
+    cond do
+    head == a -> do_swapper(tail, a, b, [b | res])
+    head == b -> do_swapper(tail, a, b, [a | res])
+    true -> do_swapper(tail, a, b, [head | res])
+    end
+  end
+
+  # 15. dot_product: function that returns the result of applying the dot product to both lists.
+
+  def dot_product(data, list), do: do_dot_product(data, list, 0)
+  defp do_dot_product([], [], res), do: res
+  defp do_dot_product([head | tail], [h | t], res), do: do_dot_product(tail, t, head * h + res)
+
+  # 16. average: function that takes a list of numbers lst as input and returns the arithmetic mean.
+
+  def longitud([]), do: 0
+  def longitud([_head | tail]), do: 1 + longitud(tail)
+
+  def average([]), do: 0
+  def average(list), do: add_list(list) / longitud(list)
+
+  # 17. std_dev: function that takes a list of numbers lst as input and returns the standard deviation of the elements.
+
+  def std_dev([]), do: 0
+  def std_dev(data) do
+    avrg = average(data)
+    :math.sqrt(do_std_dev(data, avrg, 0) / longitud(data))
+  end
+
+  defp do_std_dev([], _average, res), do: res
+  defp do_std_dev([head | tail], average, res), do: do_std_dev(tail, average, pow((head - average),2) + res)
+
+  # 18. replic: function that returns a new list that replicates every element in lst n times.
+
+  def replic(n, data) do
+    if n > 0 do
+      do_replic_list(data, n, [])
+    else
+      []
+    end
+  end
+
+  defp do_replic_list([], _n, res), do: Enum.reverse(res)
+  defp do_replic_list([head | tail], n, res) do
+    do_replic_list(tail, n, do_replic(head, n, res))
+  end
+
+  defp do_replic(_data, 0, res), do: res
+  defp do_replic(data, n, res) do
+    do_replic(data, n - 1, [data | res])
+  end
+
+  # 19. expand: function that takes a list lst and returns a new list where the first element in lst appearsonce, the second elementa ppears twice,
+  # the third appears three times, and so on.
+
+  def expand(data), do: expand(data, 1)
+
+  defp expand([], _res), do: []
+  defp expand([head | tail], res) do
+    replicate(head, res) ++ expand(tail, res + 1)
+  end
+
+  defp replicate(_data, 0), do: []
+  defp replicate(data, a), do: [data | replicate(data, a - 1)]
+
+  # 20. binary: function that  returns a list of 1’s and 0’s with the equivalent binary representation of n.
+
+  def binary(0), do: []
+  def binary(a) do
+    if  a > 0 do
+      do_binary(a, [])
+    end
+  end
+
+  defp do_binary(0, res), do: res
+  defp do_binary(a, res) do
+    do_binary(div(a, 2), [rem(a, 2) | res])
+  end
+
+end
