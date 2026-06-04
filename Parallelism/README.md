@@ -89,21 +89,44 @@ The sequential version calculates the area under the curve by dividing the inter
 
 ## Speedup evaluation
 
-### Sum of primes (n = 1,000,000)
+### C - Sum of Primes (n = 10,000,000)
 
 | Version | Threads | Time (s) | Speedup |
 |---------|---------|----------|---------|
-| Sequential | 1 | 0.089025 | 1x |
-| Parallel | 2 | 0.056388 | 1.58x |
-| Parallel | 4 | 0.029273| 3.04x |
-| Parallel | 8 | 0.019623 | 4.54x |
+| Sequential | 1 | 2.291955 | 1x |
+| Parallel | 2 | 2.230808 | 1.03x |
+| Parallel | 4 | 0.853450 | 2.69x |
+| Parallel | 8 | 0.527318 | 4.35x |
 
-### Numerical integration (n = 1,000,000)
+
+### C - Numerical Integration (n = 1,000,000)
 
 | Version | Threads | Time (s) | Speedup |
 |---------|---------|----------|---------|
-| Sequential | 1 | 0.001841 | 1x |
-| Parallel | 2 | - | - |
-| Parallel | 4 | 0.000851 | 2.16x |
-| Parallel | 8 | - | - |
+| Sequential | 1 | 0.001673 | 1x |
+| Parallel | 2 | 0.002128 | 0.79x |
+| Parallel | 4 | 0.001024 | 1.63x |
+| Parallel | 8 | 0.001086 | 1.54x |
+
+### Elixir - Sum of Primes (n = 1,000,000)
+
+| Version | Threads | Time (s) | Speedup |
+|---------|---------|----------|---------|
+| Sequential | 1 | 0.180219 | 1x |
+| Parallel | 2 | 0.122498 | 1.47 |
+| Parallel | 4 | 0.077027 | 2.34x |
+| Parallel | 8 | 0.041733 | 4.32x |
+
+### Elixir - Numerical Integration (n = 1,000,000)
+
+| Version | Threads | Time (s) | Speedup |
+|---------|---------|----------|---------|
+| Sequential | 1 | 0.017581 | 1x |
+| Parallel | 2 | 0.022218 | 0.79x |
+| Parallel | 4 | 0.006438 | 2.73x |
+| Parallel | 8 | 0.005125 | 3.43x |
+
+## Analysis
+
+The speedup results show that parallelization is more effective for computationally heavy tasks like the sum of primes, where each number requires checking divisors up to √x. For numerical integration, the calculation per rectangle is simpler, so the overhead of creating and synchronizing threads can outweigh the benefit with small numbers of threads (2 threads actually performed worse than sequential). With more threads (4 and 8), the speedup improves significantly for both problems.
 
