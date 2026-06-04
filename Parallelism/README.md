@@ -1,75 +1,109 @@
-# Monique-Evidence
+# Activity 5.2 - Parallel and Concurrent Programming
 
-Arantza Monique Mercado Moreno      |      A01786962
+## Arantza Monique Mercado Moreno
 
-E1 Syntax Highlighter
+---
 
-How tu run:
+## How to compile and run the programs
 
-iex "E1_syntax.exs" 
+### C:
 
-TecFiles.syntax("prueba.txt")
+In Monique-Evidence\Parallelism\C write the next command:
 
-Tokens that the lexer identifies:
+```bash
+make
+```
 
-comment:  # text
-string: "text"
-charlist: 'text'
-keyword: do:, end:, else:
-reserved_word: def, defp, defmodule, if, do, end, etc.
-boolean: true, false, nil
-atom: :ok, :"hello world", :+, :==
-special:  __MODULE__, __FILE__, __LINE__
-ignored_variable:  _, _head, _res
-attribute: @doc, @spec, @moduledoc
-number: 42, 3.14, 0xFF, 0b1010, 0o777, 1e10, ?é
-capture: &1, &upcase/1, &String.upcase/1
-operator: ==, !=, |>, ->, +, -, etc.
-function: sign(, factorial(, is_atom?(
-module: Enum, File, String
-variable: n, result, temperature
-sigil: ~r, ~s, ~w
-punctuation: (, ), {, }, [, ], ,, .
+Then run:
 
-Report with the findings of the complexity analysis:
+# Sequential prime sum
+```bash
+./Activity_5.2_prime
+```
+# Parallel prime sum
+```bash
+./Activity_5.2_prime_parallel
+``` 
 
-The program implements a lexer that traverses a text file and classifies each fragment into a token type, then wraps it in an HTML <span> tag.
+Note: You can write values next to it if you don't want the default value. Write first the value of n (any number) and 
+then the number of threads you want. For example: ./Activity_5.2_prime_parallel 10 4
 
-Main algorithm: linear recursion with pattern matching
+# Sequential numerical integration
+```bash
+./Activity_5.2_integration
+```
 
-Identify function:
+# Parallel numerical integration
+```bash
+./Activity_5.2_integration_parallel
+```
 
-- Takes the remaining text to be processed.
-- Attempts to match a regular expression at the beginning of the string (\A anchors to the start).
-- If there is a match, it generates the <span>, consumes those characters, and calls itself with the rest.
-- If there is no match, it advances one character and repeats.
+Note: You can write values next to it if you don't want the default value. Write first the value of n (number of rectangles) and 
+then the number of threads you want. For example: ./Activity_5.2_integration_parallel 10 4
 
-Regex function:
+### Elixir:
 
-Each call executes up to 18 regular expressions in sequence, stopping at the first match. In the worst case (unrecognized character), all 18 are evaluated without success.
+# Sequential prime sum and to measure time
+```bash
+iex Activity_5.2_prime.exs
 
-Time complexity of the program:
+iex> Primes.sum_primes(10)
+iex> Primes.measure_time(&Primes.sum_primes/1, [10])
+```
 
-Analysis per function:
+# Parallel prime sum and to measure time
+```bash
+iex Activity_5.2_prime_parallel.exs
 
-regex: Evaluates up to r (number of regex rules) regular expressions, each O(1) at the start of the string thanks to \A.
+iex> Primes.parallel_primes(10, 4)
+iex> Primes.measure_time(&Primes.parallel_primes/2, [1000000, 4])
+```
 
-T(regex) = O(r) = O(1)
+# Sequential numerical integration and to measure time
+```bash
+iex Activity_5.2_integration.exs
 
-identify: Called recursively once per token consumed. In the worst case (all single-character tokens), it is invoked n times.
+iex> Integration.num_integration(1000000)
+iex> Integration.measure_time(&Integration.num_integration/1, [1000000])
+```
 
-T(identify) = O(n)
+# Parallel numerical integration and to measure time
+```bash
+iex Activity_5.2_integration_parallel.exs
 
-syntax: Reads the file line by line and applies the identify function to each one. If the file has n total characters distributed across any number of lines.
+iex> Integration.parallel_integration(1000000, 4)
+iex> Integration.measure_time(&Integration.parallel_integration/2, [1000000, 4])
+```
 
-T(syntax) = O(n)
+## Parallelization process
 
-Total complexity = O(n)
+To parallelize each program, each exercise was first implemented sequentially. Once this was done, a function was created to handle tasks based on ranges, allowing for subsequent task division. Next, threads were implemented, defining a struct to create the threads and assign them tasks according to the required thread division. Additionally, a bug was fixed that occurred when there was a remainder in the division of a value among the required threads; the remainder was added to the last thread.
 
-Reflection on the ethical implications that the technology used can have on society:
+### Sum of prime numbers
 
-In our society, technology in general is closely linked to ethics because it can be viewed from two perspectives. The first one is positive, where the use of technology can be seen as a tool in the daily lives of human beings and in various sectors of the world, given that all the technological advances have led to the creation of artificial intelligence.
+The sequential version iterates through all numbers from 2 to n, checks if each one is prime using `isPrime` (this is to stress the CPU), and accumulates the sum. To parallelize it, the range `[1, n]` is divided among the threads. Each thread checks and sums the primes in its partial range, then adds its partial result to the shared variable using a mutex to avoid race conditions.
 
-Tools like these, and many others, can be beneficial for aspects such as code review, error detection, and the creation of higher-quality software. They are even useful for studies such as data analysis, medicine, statistics, and the automotive industry, among others. If used more as a support than as something that solves everything, it can help society progress in a positive way. On the negative side, it can lead to human dependence on this technology when solving problems, which could cause a setback.
+### Numerical integration
 
-Now, in the case of other technologies, such as the one used in the created lexer, it is the basis for several other more complex tools such as code editors, compilers, and others. In addition to its broad societal impact, where, for example, a lexer like this helps make code more readable and improves education by associating colors with words. But it can also lead to programmers becoming dependent on it, losing the ability to program in a colorless language.
+The sequential version calculates the area under the curve by dividing the interval `[0, 1]` into n rectangles and summing their heights multiplied by the width. To parallelize it, the range of rectangles is divided among the threads. Each thread calculates the sum of heights for its range, and at the end the total sum is multiplied by the width only once.
+
+## Speedup evaluation
+
+### Sum of primes (n = 1,000,000)
+
+| Version | Threads | Time (s) | Speedup |
+|---------|---------|----------|---------|
+| Sequential | 1 | 0.089025 | 1x |
+| Parallel | 2 | 0.056388 | 1.58x |
+| Parallel | 4 | 0.029273| 3.04x |
+| Parallel | 8 | 0.019623 | 4.54x |
+
+### Numerical integration (n = 1,000,000)
+
+| Version | Threads | Time (s) | Speedup |
+|---------|---------|----------|---------|
+| Sequential | 1 | 0.001841 | 1x |
+| Parallel | 2 | - | - |
+| Parallel | 4 | 0.000851 | 2.16x |
+| Parallel | 8 | - | - |
+
