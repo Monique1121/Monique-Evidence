@@ -7,27 +7,10 @@
 # The header files
 #DEPENDS =
 # The executable programs to be created
-PROGRAMS = 00-sequence_counters \
-           01-first_threads \
-           01.5-threads_return \
-           02-shared_strings \
-           03-bad_counters \
-           04-good_counters \
-           05-factorial \
-           Activity_5.2_prime\
+PROGRAMS = Activity_5.2_prime\
            Activity_5.2_prime_parallel\
            Activity_5.2_integration\
            Activity_5.2_integration_parallel \
-           prueba \
-           # 05-deadlock \
-           # 06-trylock \
-           # 07-conditional \
-           # 08-producer_consumer_base \
-           # 09-producer_consumer_conditions \
-           # 10-producer_consumer_semaphores \
-           # 11-bank-semaphores \
-           # 21-print_waves \
-           # 04.5-fast_counters
 
 ### Variables for the compilation rules ###
 # These should work for most projects, but can be modified when necessary
