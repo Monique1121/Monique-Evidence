@@ -43,6 +43,8 @@ then the number of threads you want. For example: ./Activity_5.2_integration_par
 
 ### Elixir:
 
+In Monique-Evidence\Parallelism\Elixir write the next command:
+
 # Sequential prime sum and to measure time
 ```bash
 iex Activity_5.2_prime.exs
