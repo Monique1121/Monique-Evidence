@@ -1,0 +1,86 @@
+body {
+  background-color: #1a1b2e;
+}
+
+pre {
+  font-family: 'Roboto Mono', 'Courier New', monospace;
+  font-size: 18px;
+}
+
+.comment {
+  color: #82879f;
+  font-style: italic;
+}
+
+.string {
+  color: #c3f0ca;
+}
+
+.charlist {
+  color: #f7b8d0;
+}
+
+.keyword {
+  color: #ff85c8;
+  font-weight: bold;
+}
+
+.reserved_word {
+  color: #d49aff;
+  font-weight: bold;
+}
+
+.boolean {
+  color: #ffcba4;
+}
+
+.atom {
+  color: #56f3cb;
+}
+
+.ignored_variable {
+  color: #5a5f7a;
+  font-style: italic;
+}
+
+.attribute {
+  color: #ffafd7;
+}
+
+.puntuaction {
+  color: #b8d8c4;
+}
+
+.operator {
+  color: #ff8fab;
+}
+
+.function {
+  color: #21c0fe;
+}
+
+.module {
+  color: #f93499;
+  font-weight: bold;
+}
+
+.variable {
+  color: #ffe796;
+}
+
+.sigil {
+  color: #e8a0bf;
+}
+
+.number {
+  color: #f3931f;
+}
+
+.special {
+  color: #ff6b9d;
+  font-weight: bold;
+}
+
+.capture {
+  color: #c9aaff;
+}

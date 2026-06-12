@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>prueba_1_parallel</title>
+    <link rel="stylesheet" href="colors.css">
+  </head>
+  <body>
+    <pre>
+<span class='comment'># Arantza Monique Mercado Moreno</span>
+<span class='comment'># Activity 2.1 Functional programming, part 1</span>
+
+<span class='capture'>&amp;1</span>
+
+<span class='capture'>&amp;Function.identity/1</span>
+
+<span class='string'>"uwu"</span>
+
+<span class='function'>sign</span><span class='puntuaction'>(</span><span class='puntuaction'>)</span>
+<span class='function'>factorial</span><span class='puntuaction'>(</span><span class='puntuaction'>)</span>
+<span class='function'>is_atom?</span><span class='puntuaction'>(</span><span class='puntuaction'>)</span>
+<span class='function'>save!</span><span class='puntuaction'>(</span><span class='puntuaction'>)</span>
+<span class='function'>do_something</span><span class='puntuaction'>(</span><span class='puntuaction'>)</span>
+
+<span class='atom'>:+</span>
+<span class='atom'>:-</span>
+<span class='atom'>:*</span>
+<span class='atom'>:/</span>
+<span class='atom'>:==</span>
+<span class='atom'>:!=</span>
+<span class='atom'>:&gt;</span>
+<span class='puntuaction'>:</span>
+<span class='atom'>:&gt;=</span>
+<span class='atom'>:&lt;=</span>
+
+<span class='atom'>:"uwu"</span>
+
+<span class='special'>__MODULE__</span>
+
+<span class='atom'>:"normal"</span>
+
+<span class='attribute'>@doc</span><span class='puntuaction'>,</span> <span class='attribute'>@spec</span><span class='puntuaction'>,</span> <span class='attribute'>@moduledoc</span>
+
+<span class='operator'>|&gt;</span><span class='puntuaction'>,</span> <span class='operator'>&lt;&gt;</span><span class='puntuaction'>,</span> <span class='operator'>++</span><span class='puntuaction'>,</span> <span class='operator'>--</span><span class='puntuaction'>,</span> <span class='operator'>==</span><span class='puntuaction'>,</span> <span class='operator'>!=</span><span class='puntuaction'>,</span> <span class='operator'>===</span><span class='puntuaction'>,</span> <span class='operator'>!==</span><span class='puntuaction'>,</span> <span class='operator'>=~</span><span class='puntuaction'>,</span> <span class='operator'>&lt;=</span><span class='puntuaction'>,</span> <span class='operator'>&gt;=</span><span class='puntuaction'>,</span> <span class='operator'>&lt;</span><span class='puntuaction'>,</span> <span class='operator'>&gt;</span><span class='puntuaction'>,</span> <span class='operator'>=</span><span class='puntuaction'>,</span> <span class='operator'>+</span><span class='puntuaction'>,</span> <span class='operator'>-</span><span class='puntuaction'>,</span> <span class='operator'>*</span><span class='puntuaction'>,</span> <span class='operator'>/</span><span class='puntuaction'>,</span> <span class='operator'>-&gt;</span><span class='puntuaction'>,</span> <span class='operator'>&lt;-</span><span class='puntuaction'>,</span> <span class='operator'>=&gt;</span><span class='puntuaction'>,</span> <span class='operator'>::</span><span class='puntuaction'>,</span> <span class='operator'>&amp;</span><span class='puntuaction'>,</span> <span class='operator'>@</span><span class='puntuaction'>,</span> <span class='operator'>^</span>
+
+<span class='number'>42</span><span class='puntuaction'>,</span> <span class='number'>3.14</span><span class='puntuaction'>,</span> <span class='number'>1_000</span><span class='puntuaction'>,</span> <span class='number'>0xFF</span><span class='puntuaction'>,</span> <span class='number'>0b1010</span><span class='puntuaction'>,</span> <span class='number'>0o777</span><span class='puntuaction'>,</span> <span class='number'>1e10</span><span class='puntuaction'>,</span> <span class='number'>?Ã</span>
+
+<span class='sigil'>~r</span>
+<span class='sigil'>~s</span>
+<span class='sigil'>~w</span>
+<span class='sigil'>~c</span>
+
+
+<span class='attribute'>@doc</span>
+
+<span class='operator'>|&gt;</span> <span class='module'>File</span><span class='puntuaction'>.</span><span class='function'>stream!</span><span class='puntuaction'>(</span><span class='puntuaction'>)</span>
+
+<span class='reserved_word'>defmodule</span> <span class='module'>Ariel1</span> <span class='reserved_word'>do</span>
+
+  <span class='comment'># 1. fahrenheit_to_celsius: function that takes a temperature F in Fahrenheit and converts it to the equivalent in Celsius</span>
+
+  <span class='reserved_word'>def</span> <span class='function'>fahrenheit_to_celsius</span><span class='puntuaction'>(</span><span class='variable'>temperature</span><span class='puntuaction'>)</span> <span class='reserved_word'>do</span>
+    <span class='number'>5</span> <span class='operator'>*</span> <span class='puntuaction'>(</span><span class='variable'>temperature</span> <span class='operator'>-</span> <span class='number'>32</span><span class='puntuaction'>)</span> <span class='operator'>/</span> <span class='number'>9</span>   <span class='number'>10e10</span>
+  <span class='reserved_word'>end</span>
+
+  <span class='comment'># 2. roots: function that returns one of the solutions to a quadratic equation, given the three coefficients a,b and c given as inputs.</span>
+
+  <span class='reserved_word'>def</span> <span class='function'>roots</span><span class='puntuaction'>(</span><span class='variable'>a</span><span class='puntuaction'>,</span> <span class='variable'>b</span><span class='puntuaction'>,</span> <span class='variable'>c</span><span class='puntuaction'>)</span> <span class='reserved_word'>do</span>
+    <span class='puntuaction'>(</span><span class='operator'>-</span> <span class='variable'>b</span> <span class='operator'>+</span> <span class='atom'>:math</span><span class='puntuaction'>.</span><span class='function'>sqrt</span><span class='puntuaction'>(</span><span class='function'>pow</span><span class='puntuaction'>(</span><span class='variable'>b</span><span class='puntuaction'>,</span> <span class='number'>2</span><span class='puntuaction'>)</span> <span class='operator'>-</span> <span class='number'>4</span> <span class='operator'>*</span> <span class='variable'>a</span> <span class='operator'>*</span> <span class='variable'>c</span><span class='puntuaction'>)</span><span class='puntuaction'>)</span>  <span class='operator'>/</span> <span class='puntuaction'>(</span><span class='number'>2</span><span class='operator'>*</span><span class='variable'>a</span><span class='puntuaction'>)</span>
+  <span class='reserved_word'>end</span>
+
+  <span class='comment'># 3. sign: function that takes an integer value n and returns different values depending on the value of n.</span>
+
+  <span class='reserved_word'>def</span> <span class='function'>sign</span><span class='puntuaction'>(</span><span class='variable'>n</span><span class='puntuaction'>)</span> <span class='reserved_word'>do</span>
+    <span class='reserved_word'>cond</span> <span class='reserved_word'>do</span>
+    <span class='variable'>n</span> <span class='operator'>&lt;</span> <span class='number'>0</span> <span class='operator'>-&gt;</span> <span class='number'>-1</span>
+    <span class='variable'>n</span> <span class='operator'>&gt;</span> <span class='number'>0</span> <span class='operator'>-&gt;</span> <span class='number'>1</span>
+    <span class='variable'>n</span> <span class='operator'>==</span> <span class='number'>0</span> <span class='operator'>-&gt;</span> <span class='number'>0</span>
+    <span class='reserved_word'>end</span>
+  <span class='reserved_word'>end</span>
+
+  <span class='comment'># 4. bmi: function that determines if the proportion of a personâ€™s weight and height is adequate.</span>
+
+  <span class='reserved_word'>def</span> <span class='function'>bmi</span><span class='puntuaction'>(</span><span class='variable'>weight</span><span class='puntuaction'>,</span> <span class='variable'>height</span><span class='puntuaction'>)</span> <span class='reserved_word'>do</span>
+    <span class='variable'>bmi</span> <span class='operator'>=</span> <span class='variable'>weight</span> <span class='operator'>/</span> <span class='variable'>pow</span> <span class='puntuaction'>(</span><span class='variable'>height</span><span class='puntuaction'>,</span> <span class='number'>2</span><span class='puntuaction'>)</span>
+    <span class='reserved_word'>cond</span> <span class='reserved_word'>do</span>
+        <span class='variable'>bmi</span> <span class='operator'>&lt;</span> <span class='number'>20</span> <span class='operator'>-&gt;</span> <span class='atom'>:underweight</span>
+        <span class='number'>20</span> <span class='operator'>&lt;=</span> <span class='variable'>bmi</span> <span class='reserved_word'>and</span> <span class='variable'>bmi</span> <span class='operator'>&lt;</span> <span class='number'>25</span> <span class='operator'>-&gt;</span> <span class='atom'>:normal</span>
+        <span class='number'>25</span> <span class='operator'>&lt;=</span> <span class='variable'>bmi</span> <span class='reserved_word'>and</span> <span class='variable'>bmi</span> <span class='operator'>&lt;</span> <span class='number'>30</span> <span class='operator'>-&gt;</span> <span class='atom'>:obese1</span>
+        <span class='number'>30</span> <span class='operator'>&lt;=</span> <span class='variable'>bmi</span> <span class='reserved_word'>and</span> <span class='variable'>bmi</span> <span class='operator'>&lt;</span> <span class='number'>40</span> <span class='operator'>-&gt;</span> <span class='atom'>:obese2</span>
+        <span class='number'>40</span> <span class='operator'>&lt;=</span> <span class='variable'>bmi</span> <span class='operator'>-&gt;</span> <span class='atom'>:obese3</span>
+    <span class='reserved_word'>end</span>
+
+  <span class='reserved_word'>end</span>
+
+  <span class='comment'># 5. factorial: function that  takes a positive integer n and returns the corresponding factorial value.</span>
+
+  <span class='reserved_word'>def</span> <span class='function'>factorial</span><span class='puntuaction'>(</span><span class='variable'>n</span><span class='puntuaction'>)</span><span class='puntuaction'>,</span> <span class='keyword'>do:</span> <span class='function'>do_tail_factorial</span><span class='puntuaction'>(</span><span class='variable'>n</span><span class='puntuaction'>,</span> <span class='number'>1</span><span class='puntuaction'>)</span>
+  <span class='reserved_word'>defp</span> <span class='function'>do_tail_factorial</span><span class='puntuaction'>(</span><span class='number'>0</span><span class='puntuaction'>,</span> <span class='variable'>a</span><span class='puntuaction'>)</span><span class='puntuaction'>,</span> <span class='keyword'>do:</span> <span class='variable'>a</span>
+  <span class='reserved_word'>defp</span> <span class='function'>do_tail_factorial</span><span class='puntuaction'>(</span><span class='variable'>n</span><span class='puntuaction'>,</span> <span class='variable'>a</span><span class='puntuaction'>)</span><span class='puntuaction'>,</span> <span class='keyword'>do:</span> <span class='function'>do_tail_factorial</span><span class='puntuaction'>(</span><span class='variable'>n</span> <span class='operator'>-</span> <span class='number'>1</span><span class='puntuaction'>,</span> <span class='variable'>n</span> <span class='operator'>*</span> <span class='variable'>a</span><span class='puntuaction'>)</span>
+
+  <span class='comment'># 6. pow: function that returns the value of a elevated to the power of b.</span>
+
+  <span class='reserved_word'>def</span> <span class='function'>pow</span><span class='puntuaction'>(</span><span class='variable'>a</span><span class='puntuaction'>,</span> <span class='variable'>b</span><span class='puntuaction'>)</span><span class='puntuaction'>,</span> <span class='keyword'>do:</span> <span class='function'>do_pow</span><span class='puntuaction'>(</span><span class='variable'>a</span><span class='puntuaction'>,</span> <span class='variable'>b</span><span class='puntuaction'>,</span> <span class='number'>1</span><span class='puntuaction'>)</span>
+  <span class='reserved_word'>defp</span> <span class='function'>do_pow</span><span class='puntuaction'>(</span><span class='ignored_variable'>_a</span><span class='puntuaction'>,</span> <span class='number'>0</span><span class='puntuaction'>,</span> <span class='variable'>c</span><span class='puntuaction'>)</span><span class='puntuaction'>,</span> <span class='keyword'>do:</span> <span class='variable'>c</span>
+  <span class='reserved_word'>defp</span> <span class='function'>do_pow</span><span class='puntuaction'>(</span><span class='variable'>a</span><span class='puntuaction'>,</span> <span class='variable'>b</span><span class='puntuaction'>,</span> <span class='variable'>c</span><span class='puntuaction'>)</span><span class='puntuaction'>,</span> <span class='keyword'>do:</span> <span class='function'>do_pow</span><span class='puntuaction'>(</span><span class='variable'>a</span><span class='puntuaction'>,</span> <span class='variable'>b</span> <span class='operator'>-</span> <span class='number'>1</span><span class='puntuaction'>,</span> <span class='variable'>c</span> <span class='operator'>*</span> <span class='variable'>a</span><span class='puntuaction'>)</span>
+
+  <span class='comment'># 7. fib: function that takes a positive integer n and returns the nth element in the Fibonacci sequence.</span>
+
+  <span class='reserved_word'>def</span> <span class='function'>fib</span><span class='puntuaction'>(</span><span class='variable'>n</span><span class='puntuaction'>)</span> <span class='reserved_word'>do</span>
+    <span class='reserved_word'>if</span> <span class='variable'>n</span> <span class='operator'>&lt;=</span> <span class='number'>1</span> <span class='reserved_word'>do</span>
+        <span class='variable'>n</span>
+    <span class='reserved_word'>else</span>
+        <span class='function'>fib</span><span class='puntuaction'>(</span><span class='variable'>n</span> <span class='operator'>-</span> <span class='number'>1</span><span class='puntuaction'>)</span> <span class='operator'>+</span> <span class='function'>fib</span><span class='puntuaction'>(</span><span class='variable'>n</span> <span class='operator'>-</span> <span class='number'>2</span><span class='puntuaction'>)</span>
+    <span class='reserved_word'>end</span>
+  <span class='reserved_word'>end</span>
+
+  <span class='comment'># 8. duplicate: function that takes a list lst as input and returns a new list where each element in the original is duplicated.</span>
+
+  <span class='reserved_word'>def</span> <span class='function'>duplicate</span><span class='puntuaction'>(</span><span class='variable'>data</span><span class='puntuaction'>)</span><span class='puntuaction'>,</span> <span class='keyword'>do:</span> <span class='function'>do_duplicate</span><span class='puntuaction'>(</span><span class='variable'>data</span><span class='puntuaction'>,</span> <span class='puntuaction'>[</span><span class='puntuaction'>]</span><span class='puntuaction'>)</span>
+  <span class='reserved_word'>defp</span> <span class='function'>do_duplicate</span><span class='puntuaction'>(</span><span class='puntuaction'>[</span><span class='puntuaction'>]</span><span class='puntuaction'>,</span> <span class='variable'>res</span><span class='puntuaction'>)</span><span class='puntuaction'>,</span> <span class='keyword'>do:</span> <span class='module'>Enum</span><span class='puntuaction'>.</span><span class='function'>reverse</span><span class='puntuaction'>(</span><span class='variable'>res</span><span class='puntuaction'>)</span>
+  <span class='reserved_word'>defp</span> <span class='function'>do_duplicate</span><span class='puntuaction'>(</span><span class='puntuaction'>[</span><span class='variable'>head</span> <span class='operator'>|</span> <span class='variable'>tail</span><span class='puntuaction'>]</span><span class='puntuaction'>,</span> <span class='variable'>res</span><span class='puntuaction'>)</span><span class='puntuaction'>,</span> <span class='keyword'>do:</span> <span class='function'>do_duplicate</span><span class='puntuaction'>(</span><span class='variable'>tail</span><span class='puntuaction'>,</span> <span class='puntuaction'>[</span><span class='variable'>head</span><span class='puntuaction'>,</span> <span class='variable'>head</span> <span class='operator'>|</span> <span class='variable'>res</span><span class='puntuaction'>]</span><span class='puntuaction'>)</span>
+
+  <span class='comment'># 9. enlist: function that takes a list lst and returns a new list where each element is placed inside a sub-list.</span>
+
+  <span class='reserved_word'>def</span> <span class='function'>enlist</span><span class='puntuaction'>(</span><span class='variable'>data</span><span class='puntuaction'>)</span><span class='puntuaction'>,</span> <span class='keyword'>do:</span> <span class='function'>do_enlist</span><span class='puntuaction'>(</span><span class='variable'>data</span><span class='puntuaction'>,</span> <span class='puntuaction'>[</span><span class='puntuaction'>]</span><span class='puntuaction'>)</span>
+  <span class='reserved_word'>defp</span> <span class='function'>do_enlist</span><span class='puntuaction'>(</span><span class='puntuaction'>[</span><span class='puntuaction'>]</span><span class='puntuaction'>,</span> <span class='variable'>res</span><span class='puntuaction'>)</span><span class='puntuaction'>,</span> <span class='keyword'>do:</span> <span class='module'>Enum</span><span class='puntuaction'>.</span><span class='function'>reverse</span><span class='puntuaction'>(</span><span class='variable'>res</span><span class='puntuaction'>)</span>
+  <span class='reserved_word'>defp</span> <span class='function'>do_enlist</span><span class='puntuaction'>(</span><span class='puntuaction'>[</span><span class='variable'>head</span> <span class='operator'>|</span> <span class='variable'>tail</span><span class='puntuaction'>]</span><span class='puntuaction'>,</span> <span class='variable'>res</span><span class='puntuaction'>)</span><span class='puntuaction'>,</span> <span class='keyword'>do:</span> <span class='function'>do_enlist</span><span class='puntuaction'>(</span><span class='variable'>tail</span><span class='puntuaction'>,</span> <span class='puntuaction'>[</span><span class='puntuaction'>(</span><span class='variable'>head</span><span class='puntuaction'>)</span> <span class='operator'>|</span> <span class='variable'>res</span><span class='puntuaction'>]</span><span class='puntuaction'>)</span>
+
+  <span class='comment'># 10. positives: function that takes a list of integers lst and returns a new list with only the positive numbers in lst.</span>
+
+  <span class='reserved_word'>def</span> <span class='function'>positives</span><span class='puntuaction'>(</span><span class='variable'>data</span><span class='puntuaction'>)</span><span class='puntuaction'>,</span> <span class='keyword'>do:</span> <span class='function'>do_positives</span><span class='puntuaction'>(</span><span class='variable'>data</span><span class='puntuaction'>,</span> <span class='puntuaction'>[</span><span class='puntuaction'>]</span><span class='puntuaction'>)</span>
+  <span class='reserved_word'>defp</span> <span class='function'>do_positives</span><span class='puntuaction'>(</span><span class='puntuaction'>[</span><span class='puntuaction'>]</span><span class='puntuaction'>,</span> <span class='variable'>res</span><span class='puntuaction'>)</span><span class='puntuaction'>,</span> <span class='keyword'>do:</span> <span class='module'>Enum</span><span class='puntuaction'>.</span><span class='function'>reverse</span><span class='puntuaction'>(</span><span class='variable'>res</span><span class='puntuaction'>)</span>
+  <span class='reserved_word'>defp</span> <span class='function'>do_positives</span><span class='puntuaction'>(</span><span class='puntuaction'>[</span><span class='variable'>head</span> <span class='operator'>|</span> <span class='variable'>tail</span><span class='puntuaction'>]</span><span class='puntuaction'>,</span> <span class='variable'>res</span><span class='puntuaction'>)</span> <span class='reserved_word'>do</span>
+    <span class='reserved_word'>if</span> <span class='variable'>head</span> <span class='operator'>&gt;</span> <span class='number'>0</span> <span class='reserved_word'>do</span>
+        <span class='function'>do_positives</span><span class='puntuaction'>(</span><span class='variable'>tail</span><span class='puntuaction'>,</span> <span class='puntuaction'>[</span><span class='variable'>head</span> <span class='operator'>|</span> <span class='variable'>res</span><span class='puntuaction'>]</span><span class='puntuaction'>)</span>
+    <span class='reserved_word'>else</span>
+        <span class='function'>do_positives</span><span class='puntuaction'>(</span><span class='variable'>tail</span><span class='puntuaction'>,</span> <span class='variable'>res</span><span class='puntuaction'>)</span>
+    <span class='reserved_word'>end</span>
+  <span class='reserved_word'>end</span>
+
+  <span class='comment'># 11. add_list: function that returns the sum of the numbers contained in the input lst.</span>
+
+  <span class='reserved_word'>def</span> <span class='function'>add_list</span><span class='puntuaction'>(</span><span class='variable'>data</span><span class='puntuaction'>)</span><span class='puntuaction'>,</span> <span class='keyword'>do:</span> <span class='function'>do_add_list</span><span class='puntuaction'>(</span><span class='variable'>data</span><span class='puntuaction'>,</span> <span class='number'>0</span><span class='puntuaction'>)</span>
+  <span class='reserved_word'>defp</span> <span class='function'>do_add_list</span><span class='puntuaction'>(</span><span class='puntuaction'>[</span><span class='puntuaction'>]</span><span class='puntuaction'>,</span> <span class='variable'>res</span><span class='puntuaction'>)</span><span class='puntuaction'>,</span> <span class='keyword'>do:</span> <span class='variable'>res</span>
+  <span class='reserved_word'>defp</span> <span class='function'>do_add_list</span><span class='puntuaction'>(</span><span class='puntuaction'>[</span><span class='variable'>head</span> <span class='operator'>|</span> <span class='variable'>tail</span><span class='puntuaction'>]</span><span class='puntuaction'>,</span> <span class='variable'>res</span><span class='puntuaction'>)</span><span class='puntuaction'>,</span> <span class='keyword'>do:</span> <span class='function'>do_add_list</span><span class='puntuaction'>(</span><span class='variable'>tail</span><span class='puntuaction'>,</span> <span class='variable'>head</span> <span class='operator'>+</span> <span class='variable'>res</span><span class='puntuaction'>)</span>
+
+  <span class='comment'># 12. invert_pairs: function that returns a new list where the two elements in each tuple invert their place.</span>
+
+  <span class='reserved_word'>def</span> <span class='function'>invert_pairs</span><span class='puntuaction'>(</span><span class='variable'>data</span><span class='puntuaction'>)</span><span class='puntuaction'>,</span> <span class='keyword'>do:</span> <span class='function'>do_invert_pairs</span><span class='puntuaction'>(</span><span class='variable'>data</span><span class='puntuaction'>,</span> <span class='puntuaction'>[</span><span class='puntuaction'>]</span><span class='puntuaction'>)</span>
+  <span class='reserved_word'>defp</span> <span class='function'>do_invert_pairs</span><span class='puntuaction'>(</span><span class='puntuaction'>[</span><span class='puntuaction'>]</span><span class='puntuaction'>,</span> <span class='variable'>res</span><span class='puntuaction'>)</span><span class='puntuaction'>,</span> <span class='keyword'>do:</span> <span class='module'>Enum</span><span class='puntuaction'>.</span><span class='function'>reverse</span><span class='puntuaction'>(</span><span class='variable'>res</span><span class='puntuaction'>)</span>
+  <span class='reserved_word'>defp</span> <span class='function'>do_invert_pairs</span><span class='puntuaction'>(</span><span class='puntuaction'>[</span><span class='puntuaction'>{</span><span class='variable'>a</span><span class='puntuaction'>,</span> <span class='variable'>b</span><span class='puntuaction'>}</span> <span class='operator'>|</span> <span class='variable'>tail</span><span class='puntuaction'>]</span><span class='puntuaction'>,</span> <span class='ignored_variable'>_res</span><span class='puntuaction'>)</span><span class='puntuaction'>,</span> <span class='keyword'>do:</span> <span class='puntuaction'>[</span><span class='puntuaction'>{</span><span class='variable'>b</span><span class='puntuaction'>,</span> <span class='variable'>a</span><span class='puntuaction'>}</span> <span class='operator'>|</span> <span class='function'>invert_pairs</span><span class='puntuaction'>(</span><span class='variable'>tail</span><span class='puntuaction'>)</span><span class='puntuaction'>]</span>
+
+  <span class='comment'># 13. is_atom_list: function that returns true if every element in lst is a symbol/atom, and false otherwise.</span>
+
+  <span class='reserved_word'>def</span> <span class='function'>is_atom_list</span><span class='puntuaction'>(</span><span class='puntuaction'>[</span><span class='puntuaction'>]</span><span class='puntuaction'>)</span><span class='puntuaction'>,</span> <span class='keyword'>do:</span> <span class='boolean'>true</span>
+  <span class='reserved_word'>def</span> <span class='function'>is_atom_list</span><span class='puntuaction'>(</span><span class='puntuaction'>[</span><span class='variable'>head</span> <span class='operator'>|</span> <span class='variable'>tail</span><span class='puntuaction'>]</span><span class='puntuaction'>)</span> <span class='reserved_word'>do</span>
+    <span class='reserved_word'>if</span> <span class='function'>is_atom</span><span class='puntuaction'>(</span><span class='variable'>head</span><span class='puntuaction'>)</span> <span class='reserved_word'>do</span>
+        <span class='boolean'>true</span>
+        <span class='function'>is_atom_list</span><span class='puntuaction'>(</span><span class='variable'>tail</span><span class='puntuaction'>)</span>
+    <span class='reserved_word'>else</span>
+        <span class='boolean'>false</span>
+    <span class='reserved_word'>end</span>
+  <span class='reserved_word'>end</span>
+
+  <span class='comment'># 14. swapper: function that returns a new list, where every occurrence of a is substituted by b and every occurrence of b is substituted by a.</span>
+
+  <span class='reserved_word'>def</span> <span class='function'>swapper</span><span class='puntuaction'>(</span><span class='variable'>data</span><span class='puntuaction'>,</span> <span class='variable'>a</span><span class='puntuaction'>,</span> <span class='variable'>b</span><span class='puntuaction'>)</span><span class='puntuaction'>,</span> <span class='keyword'>do:</span> <span class='function'>do_swapper</span><span class='puntuaction'>(</span><span class='variable'>data</span><span class='puntuaction'>,</span> <span class='variable'>a</span><span class='puntuaction'>,</span> <span class='variable'>b</span><span class='puntuaction'>,</span> <span class='puntuaction'>[</span><span class='puntuaction'>]</span><span class='puntuaction'>)</span>
+  <span class='reserved_word'>defp</span> <span class='function'>do_swapper</span><span class='puntuaction'>(</span><span class='puntuaction'>[</span><span class='puntuaction'>]</span><span class='puntuaction'>,</span> <span class='ignored_variable'>_a</span><span class='puntuaction'>,</span> <span class='ignored_variable'>_prueba</span><span class='puntuaction'>,</span> <span class='variable'>res</span><span class='puntuaction'>)</span><span class='puntuaction'>,</span> <span class='keyword'>do:</span> <span class='module'>Enum</span><span class='puntuaction'>.</span><span class='function'>reverse</span><span class='puntuaction'>(</span><span class='variable'>res</span><span class='puntuaction'>)</span>
+  <span class='reserved_word'>defp</span> <span class='function'>do_swapper</span><span class='puntuaction'>(</span><span class='puntuaction'>[</span><span class='variable'>head</span> <span class='operator'>|</span> <span class='variable'>tail</span><span class='puntuaction'>]</span><span class='puntuaction'>,</span> <span class='variable'>a</span><span class='puntuaction'>,</span> <span class='variable'>b</span><span class='puntuaction'>,</span> <span class='variable'>res</span><span class='puntuaction'>)</span> <span class='reserved_word'>do</span>
+    <span class='reserved_word'>cond</span> <span class='reserved_word'>do</span>
+    <span class='variable'>head</span> <span class='operator'>==</span> <span class='variable'>a</span> <span class='operator'>-&gt;</span> <span class='function'>do_swapper</span><span class='puntuaction'>(</span><span class='variable'>tail</span><span class='puntuaction'>,</span> <span class='variable'>a</span><span class='puntuaction'>,</span> <span class='variable'>b</span><span class='puntuaction'>,</span> <span class='puntuaction'>[</span><span class='variable'>b</span> <span class='operator'>|</span> <span class='variable'>res</span><span class='puntuaction'>]</span><span class='puntuaction'>)</span>
+    <span class='variable'>head</span> <span class='operator'>==</span> <span class='variable'>b</span> <span class='operator'>-&gt;</span> <span class='function'>do_swapper</span><span class='puntuaction'>(</span><span class='variable'>tail</span><span class='puntuaction'>,</span> <span class='variable'>a</span><span class='puntuaction'>,</span> <span class='variable'>b</span><span class='puntuaction'>,</span> <span class='puntuaction'>[</span><span class='variable'>a</span> <span class='operator'>|</span> <span class='variable'>res</span><span class='puntuaction'>]</span><span class='puntuaction'>)</span>
+    <span class='boolean'>true</span> <span class='operator'>-&gt;</span> <span class='function'>do_swapper</span><span class='puntuaction'>(</span><span class='variable'>tail</span><span class='puntuaction'>,</span> <span class='variable'>a</span><span class='puntuaction'>,</span> <span class='variable'>b</span><span class='puntuaction'>,</span> <span class='puntuaction'>[</span><span class='variable'>head</span> <span class='operator'>|</span> <span class='variable'>res</span><span class='puntuaction'>]</span><span class='puntuaction'>)</span>
+    <span class='reserved_word'>end</span>
+  <span class='reserved_word'>end</span>
+
+  <span class='comment'># 15. dot_product: function that returns the result of applying the dot product to both lists.</span>
+
+  <span class='reserved_word'>def</span> <span class='function'>dot_product</span><span class='puntuaction'>(</span><span class='variable'>data</span><span class='puntuaction'>,</span> <span class='variable'>list</span><span class='puntuaction'>)</span><span class='puntuaction'>,</span> <span class='keyword'>do:</span> <span class='function'>do_dot_product</span><span class='puntuaction'>(</span><span class='variable'>data</span><span class='puntuaction'>,</span> <span class='variable'>list</span><span class='puntuaction'>,</span> <span class='number'>0</span><span class='puntuaction'>)</span>
+  <span class='reserved_word'>defp</span> <span class='function'>do_dot_product</span><span class='puntuaction'>(</span><span class='puntuaction'>[</span><span class='puntuaction'>]</span><span class='puntuaction'>,</span> <span class='puntuaction'>[</span><span class='puntuaction'>]</span><span class='puntuaction'>,</span> <span class='variable'>res</span><span class='puntuaction'>)</span><span class='puntuaction'>,</span> <span class='keyword'>do:</span> <span class='variable'>res</span>
+  <span class='reserved_word'>defp</span> <span class='function'>do_dot_product</span><span class='puntuaction'>(</span><span class='puntuaction'>[</span><span class='variable'>head</span> <span class='operator'>|</span> <span class='variable'>tail</span><span class='puntuaction'>]</span><span class='puntuaction'>,</span> <span class='puntuaction'>[</span><span class='variable'>h</span> <span class='operator'>|</span> <span class='variable'>t</span><span class='puntuaction'>]</span><span class='puntuaction'>,</span> <span class='variable'>res</span><span class='puntuaction'>)</span><span class='puntuaction'>,</span> <span class='keyword'>do:</span> <span class='function'>do_dot_product</span><span class='puntuaction'>(</span><span class='variable'>tail</span><span class='puntuaction'>,</span> <span class='variable'>t</span><span class='puntuaction'>,</span> <span class='variable'>head</span> <span class='operator'>*</span> <span class='variable'>h</span> <span class='operator'>+</span> <span class='variable'>res</span><span class='puntuaction'>)</span>
+
+  <span class='comment'># 16. average: function that takes a list of numbers lst as input and returns the arithmetic mean.</span>
+
+  <span class='reserved_word'>def</span> <span class='function'>longitud</span><span class='puntuaction'>(</span><span class='puntuaction'>[</span><span class='puntuaction'>]</span><span class='puntuaction'>)</span><span class='puntuaction'>,</span> <span class='keyword'>do:</span> <span class='number'>0</span>
+  <span class='reserved_word'>def</span> <span class='function'>longitud</span><span class='puntuaction'>(</span><span class='puntuaction'>[</span><span class='ignored_variable'>_head</span> <span class='operator'>|</span> <span class='variable'>tail</span><span class='puntuaction'>]</span><span class='puntuaction'>)</span><span class='puntuaction'>,</span> <span class='keyword'>do:</span> <span class='number'>1</span> <span class='operator'>+</span> <span class='function'>longitud</span><span class='puntuaction'>(</span><span class='variable'>tail</span><span class='puntuaction'>)</span>
+
+  <span class='reserved_word'>def</span> <span class='function'>average</span><span class='puntuaction'>(</span><span class='puntuaction'>[</span><span class='puntuaction'>]</span><span class='puntuaction'>)</span><span class='puntuaction'>,</span> <span class='keyword'>do:</span> <span class='number'>0</span>
+  <span class='reserved_word'>def</span> <span class='function'>average</span><span class='puntuaction'>(</span><span class='variable'>list</span><span class='puntuaction'>)</span><span class='puntuaction'>,</span> <span class='keyword'>do:</span> <span class='function'>add_list</span><span class='puntuaction'>(</span><span class='variable'>list</span><span class='puntuaction'>)</span> <span class='operator'>/</span> <span class='function'>longitud</span><span class='puntuaction'>(</span><span class='variable'>list</span><span class='puntuaction'>)</span>
+
+  <span class='comment'># 17. std_dev: function that takes a list of numbers lst as input and returns the standard deviation of the elements.</span>
+
+  <span class='reserved_word'>def</span> <span class='function'>std_dev</span><span class='puntuaction'>(</span><span class='puntuaction'>[</span><span class='puntuaction'>]</span><span class='puntuaction'>)</span><span class='puntuaction'>,</span> <span class='keyword'>do:</span> <span class='number'>0</span>
+  <span class='reserved_word'>def</span> <span class='function'>std_dev</span><span class='puntuaction'>(</span><span class='variable'>data</span><span class='puntuaction'>)</span> <span class='reserved_word'>do</span>
+    <span class='variable'>avrg</span> <span class='operator'>=</span> <span class='function'>average</span><span class='puntuaction'>(</span><span class='variable'>data</span><span class='puntuaction'>)</span>
+    <span class='atom'>:math</span><span class='puntuaction'>.</span><span class='function'>sqrt</span><span class='puntuaction'>(</span><span class='function'>do_std_dev</span><span class='puntuaction'>(</span><span class='variable'>data</span><span class='puntuaction'>,</span> <span class='variable'>avrg</span><span class='puntuaction'>,</span> <span class='number'>0</span><span class='puntuaction'>)</span> <span class='operator'>/</span> <span class='function'>longitud</span><span class='puntuaction'>(</span><span class='variable'>data</span><span class='puntuaction'>)</span><span class='puntuaction'>)</span>
+  <span class='reserved_word'>end</span>
+
+  <span class='reserved_word'>defp</span> <span class='function'>do_std_dev</span><span class='puntuaction'>(</span><span class='puntuaction'>[</span><span class='puntuaction'>]</span><span class='puntuaction'>,</span> <span class='ignored_variable'>_average</span><span class='puntuaction'>,</span> <span class='variable'>res</span><span class='puntuaction'>)</span><span class='puntuaction'>,</span> <span class='keyword'>do:</span> <span class='variable'>res</span>
+  <span class='reserved_word'>defp</span> <span class='function'>do_std_dev</span><span class='puntuaction'>(</span><span class='puntuaction'>[</span><span class='variable'>head</span> <span class='operator'>|</span> <span class='variable'>tail</span><span class='puntuaction'>]</span><span class='puntuaction'>,</span> <span class='variable'>average</span><span class='puntuaction'>,</span> <span class='variable'>res</span><span class='puntuaction'>)</span><span class='puntuaction'>,</span> <span class='keyword'>do:</span> <span class='function'>do_std_dev</span><span class='puntuaction'>(</span><span class='variable'>tail</span><span class='puntuaction'>,</span> <span class='variable'>average</span><span class='puntuaction'>,</span> <span class='function'>pow</span><span class='puntuaction'>(</span><span class='puntuaction'>(</span><span class='variable'>head</span> <span class='operator'>-</span> <span class='variable'>average</span><span class='puntuaction'>)</span><span class='puntuaction'>,</span><span class='number'>2</span><span class='puntuaction'>)</span> <span class='operator'>+</span> <span class='variable'>res</span><span class='puntuaction'>)</span>
+
+  <span class='comment'># 18. replic: function that returns a new list that replicates every element in lst n times.</span>
+
+  <span class='reserved_word'>def</span> <span class='function'>replic</span><span class='puntuaction'>(</span><span class='variable'>n</span><span class='puntuaction'>,</span> <span class='variable'>data</span><span class='puntuaction'>)</span> <span class='reserved_word'>do</span>
+    <span class='reserved_word'>if</span> <span class='variable'>n</span> <span class='operator'>&gt;</span> <span class='number'>0</span> <span class='reserved_word'>do</span>
+      <span class='function'>do_replic_list</span><span class='puntuaction'>(</span><span class='variable'>data</span><span class='puntuaction'>,</span> <span class='variable'>n</span><span class='puntuaction'>,</span> <span class='puntuaction'>[</span><span class='puntuaction'>]</span><span class='puntuaction'>)</span>
+    <span class='reserved_word'>else</span>
+      <span class='puntuaction'>[</span><span class='puntuaction'>]</span>
+    <span class='reserved_word'>end</span>
+  <span class='reserved_word'>end</span>
+
+  <span class='reserved_word'>defp</span> <span class='function'>do_replic_list</span><span class='puntuaction'>(</span><span class='puntuaction'>[</span><span class='puntuaction'>]</span><span class='puntuaction'>,</span> <span class='ignored_variable'>_n</span><span class='puntuaction'>,</span> <span class='variable'>res</span><span class='puntuaction'>)</span><span class='puntuaction'>,</span> <span class='keyword'>do:</span> <span class='module'>Enum</span><span class='puntuaction'>.</span><span class='function'>reverse</span><span class='puntuaction'>(</span><span class='variable'>res</span><span class='puntuaction'>)</span>
+  <span class='reserved_word'>defp</span> <span class='function'>do_replic_list</span><span class='puntuaction'>(</span><span class='puntuaction'>[</span><span class='variable'>head</span> <span class='operator'>|</span> <span class='variable'>tail</span><span class='puntuaction'>]</span><span class='puntuaction'>,</span> <span class='variable'>n</span><span class='puntuaction'>,</span> <span class='variable'>res</span><span class='puntuaction'>)</span> <span class='reserved_word'>do</span>
+    <span class='function'>do_replic_list</span><span class='puntuaction'>(</span><span class='variable'>tail</span><span class='puntuaction'>,</span> <span class='variable'>n</span><span class='puntuaction'>,</span> <span class='function'>do_replic</span><span class='puntuaction'>(</span><span class='variable'>head</span><span class='puntuaction'>,</span> <span class='variable'>n</span><span class='puntuaction'>,</span> <span class='variable'>res</span><span class='puntuaction'>)</span><span class='puntuaction'>)</span>
+  <span class='reserved_word'>end</span>
+
+  <span class='reserved_word'>defp</span> <span class='function'>do_replic</span><span class='puntuaction'>(</span><span class='ignored_variable'>_data</span><span class='puntuaction'>,</span> <span class='number'>0</span><span class='puntuaction'>,</span> <span class='variable'>res</span><span class='puntuaction'>)</span><span class='puntuaction'>,</span> <span class='keyword'>do:</span> <span class='variable'>res</span>
+  <span class='reserved_word'>defp</span> <span class='function'>do_replic</span><span class='puntuaction'>(</span><span class='variable'>data</span><span class='puntuaction'>,</span> <span class='variable'>n</span><span class='puntuaction'>,</span> <span class='variable'>res</span><span class='puntuaction'>)</span> <span class='reserved_word'>do</span>
+    <span class='function'>do_replic</span><span class='puntuaction'>(</span><span class='variable'>data</span><span class='puntuaction'>,</span> <span class='variable'>n</span> <span class='operator'>-</span> <span class='number'>1</span><span class='puntuaction'>,</span> <span class='puntuaction'>[</span><span class='variable'>data</span> <span class='operator'>|</span> <span class='variable'>res</span><span class='puntuaction'>]</span><span class='puntuaction'>)</span>
+  <span class='reserved_word'>end</span>
+
+  <span class='comment'># 19. expand: function that takes a list lst and returns a new list where the first element in lst appearsonce, the second elementa ppears twice,</span>
+  <span class='comment'># the third appears three times, and so on.</span>
+
+  <span class='reserved_word'>def</span> <span class='function'>expand</span><span class='puntuaction'>(</span><span class='variable'>data</span><span class='puntuaction'>)</span><span class='puntuaction'>,</span> <span class='keyword'>do:</span> <span class='function'>expand</span><span class='puntuaction'>(</span><span class='variable'>data</span><span class='puntuaction'>,</span> <span class='number'>1</span><span class='puntuaction'>)</span>
+
+  <span class='reserved_word'>defp</span> <span class='function'>expand</span><span class='puntuaction'>(</span><span class='puntuaction'>[</span><span class='puntuaction'>]</span><span class='puntuaction'>,</span> <span class='ignored_variable'>_res</span><span class='puntuaction'>)</span><span class='puntuaction'>,</span> <span class='keyword'>do:</span> <span class='puntuaction'>[</span><span class='puntuaction'>]</span>
+  <span class='reserved_word'>defp</span> <span class='function'>expand</span><span class='puntuaction'>(</span><span class='puntuaction'>[</span><span class='variable'>head</span> <span class='operator'>|</span> <span class='variable'>tail</span><span class='puntuaction'>]</span><span class='puntuaction'>,</span> <span class='variable'>res</span><span class='puntuaction'>)</span> <span class='reserved_word'>do</span>
+    <span class='function'>replicate</span><span class='puntuaction'>(</span><span class='variable'>head</span><span class='puntuaction'>,</span> <span class='variable'>res</span><span class='puntuaction'>)</span> <span class='operator'>++</span> <span class='function'>expand</span><span class='puntuaction'>(</span><span class='variable'>tail</span><span class='puntuaction'>,</span> <span class='variable'>res</span> <span class='operator'>+</span> <span class='number'>1</span><span class='puntuaction'>)</span>
+  <span class='reserved_word'>end</span>
+
+  <span class='reserved_word'>defp</span> <span class='function'>replicate</span><span class='puntuaction'>(</span><span class='ignored_variable'>_data</span><span class='puntuaction'>,</span> <span class='number'>0</span><span class='puntuaction'>)</span><span class='puntuaction'>,</span> <span class='keyword'>do:</span> <span class='puntuaction'>[</span><span class='puntuaction'>]</span>
+  <span class='reserved_word'>defp</span> <span class='function'>replicate</span><span class='puntuaction'>(</span><span class='variable'>data</span><span class='puntuaction'>,</span> <span class='variable'>a</span><span class='puntuaction'>)</span><span class='puntuaction'>,</span> <span class='keyword'>do:</span> <span class='puntuaction'>[</span><span class='variable'>data</span> <span class='operator'>|</span> <span class='function'>replicate</span><span class='puntuaction'>(</span><span class='variable'>data</span><span class='puntuaction'>,</span> <span class='variable'>a</span> <span class='operator'>-</span> <span class='number'>1</span><span class='puntuaction'>)</span><span class='puntuaction'>]</span>
+
+
+<span class='reserved_word'>end</span>
+
+    </pre>
+  </body>
+</html>

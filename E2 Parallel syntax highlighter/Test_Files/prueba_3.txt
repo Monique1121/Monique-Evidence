@@ -1,0 +1,59 @@
+# Test 1: Math operations and recursion
+# Arantza Monique Mercado Moreno
+ 
+defmodule MathUtils do
+ 
+  @moduledoc "Basic math utilities"
+  @pi 3.14159
+ 
+  # Factorial using recursion
+  def factorial(0), do: 1
+  def factorial(n) when n > 0 do
+    n * factorial(n - 1)
+  end
+ 
+  # Fibonacci sequence
+  def fibonacci(0), do: 0
+  def fibonacci(1), do: 1
+  def fibonacci(n) do
+    fibonacci(n - 1) + fibonacci(n - 2)
+  end
+ 
+  # Sum of a list using recursion
+  defp sum_list([], acc), do: acc
+  defp sum_list([head | tail], acc) do
+    sum_list(tail, acc + head)
+  end
+ 
+  def sum(list), do: sum_list(list, 0)
+ 
+  # Circle area using @pi attribute
+  def circle_area(radius) do
+    @pi * radius * radius
+  end
+ 
+  # Check if a number is prime
+  def is_prime?(n) when n < 2, do: false
+  def is_prime?(2), do: true
+  def is_prime?(n) do
+    limit = :math.sqrt(n) |> trunc()
+    not Enum.any?(2..limit, fn i -> rem(n, i) == 0 end)
+  end
+ 
+  # Convert hex string to integer
+  def hex_to_int(hex_str) do
+    String.to_integer(hex_str, 0xFF)
+  end
+ 
+  # Binary and octal literals
+  def show_literals do
+    binary  = 0b1010
+    octal   = 0o777
+    hex     = 0xFF
+    float   = 1.5e3
+    char    = ?A
+    {binary, octal, hex, float, char}
+  end
+ 
+end
+ 

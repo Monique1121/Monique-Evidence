@@ -1,0 +1,90 @@
+# Test 2: Data structures, pattern matching and pipes
+# Arantza Monique Mercado Moreno
+ 
+defmodule DataHandler do
+ 
+  @moduledoc "Examples of structs, atoms, sigils and pipes"
+ 
+  defstruct [:name, :age, :email]
+ 
+  # Atoms and booleans
+  @valid_roles [:admin, :user, :guest]
+  @debug true
+ 
+  # Pattern matching with tuples
+  def handle_result({:ok, value}) do
+    IO.puts("Success: #{value}")
+    {:ok, value}
+  end
+ 
+  def handle_result({:error, reason}) do
+    IO.puts("Error: #{reason}")
+    {:error, reason}
+  end
+ 
+  def handle_result(nil), do: {:error, :null_value}
+ 
+  # Sigils: regex and word lists
+  def validate_email(email) do
+    pattern = ~r/^[\w.]+@[\w.]+\.\w{2,4}$/
+    Regex.match?(pattern, email)
+  end
+ 
+  def weekdays do
+    ~w(monday tuesday wednesday thursday friday)
+  end
+ 
+  # Pipe operator and string operations
+  def format_name(first, last) do
+    first
+    |> String.trim()
+    |> String.capitalize()
+    |> Kernel.<>(" ")
+    |> Kernel.<>(String.capitalize(last))
+  end
+ 
+  # Case and cond
+  def classify_age(age) do
+    cond do
+      age < 0   -> {:error, :invalid}
+      age < 13  -> {:ok, :child}
+      age < 18  -> {:ok, :teenager}
+      age < 65  -> {:ok, :adult}
+      true      -> {:ok, :senior}
+    end
+  end
+ 
+  # Anonymous functions and captures
+  def apply_discount(prices, percent) do
+    discount = &(&1 * (1 - percent / 100))
+    Enum.map(prices, discount)
+  end
+ 
+  # Map and pattern matching
+  def get_user_role(%{role: role}) when role in @valid_roles do
+    {:ok, role}
+  end
+ 
+  def get_user_role(_), do: {:error, :unknown_role}
+ 
+  # List comprehension with for
+  def even_squares(n) do
+    for x <- 1..n, rem(x, 2) == 0 do
+      x * x
+    end
+  end
+ 
+  # Try, rescue, raise
+  def safe_divide(_x, 0) do
+    raise ArgumentError, message: "cannot divide by zero"
+  end
+ 
+  def safe_divide(x, y) do
+    try do
+      {:ok, x / y}
+    rescue
+      e in ArithmeticError -> {:error, e}
+    end
+  end
+ 
+end

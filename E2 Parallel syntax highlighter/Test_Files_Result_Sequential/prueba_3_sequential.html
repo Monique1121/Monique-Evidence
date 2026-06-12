@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>prueba_3_sequential</title>
+    <link rel="stylesheet" href="colors.css">
+  </head>
+  <body>
+    <pre>
+<span class='comment'># Test 1: Math operations and recursion</span>
+<span class='comment'># Arantza Monique Mercado Moreno</span>
+ 
+<span class='reserved_word'>defmodule</span> <span class='module'>MathUtils</span> <span class='reserved_word'>do</span>
+ 
+  <span class='attribute'>@moduledoc</span> <span class='string'>"Basic math utilities"</span>
+  <span class='attribute'>@pi</span> <span class='number'>3.14159</span>
+ 
+  <span class='comment'># Factorial using recursion</span>
+  <span class='reserved_word'>def</span> <span class='function'>factorial</span><span class='puntuaction'>(</span><span class='number'>0</span><span class='puntuaction'>)</span><span class='puntuaction'>,</span> <span class='keyword'>do:</span> <span class='number'>1</span>
+  <span class='reserved_word'>def</span> <span class='function'>factorial</span><span class='puntuaction'>(</span><span class='variable'>n</span><span class='puntuaction'>)</span> <span class='reserved_word'>when</span> <span class='variable'>n</span> <span class='operator'>&gt;</span> <span class='number'>0</span> <span class='reserved_word'>do</span>
+    <span class='variable'>n</span> <span class='operator'>*</span> <span class='function'>factorial</span><span class='puntuaction'>(</span><span class='variable'>n</span> <span class='operator'>-</span> <span class='number'>1</span><span class='puntuaction'>)</span>
+  <span class='reserved_word'>end</span>
+ 
+  <span class='comment'># Fibonacci sequence</span>
+  <span class='reserved_word'>def</span> <span class='function'>fibonacci</span><span class='puntuaction'>(</span><span class='number'>0</span><span class='puntuaction'>)</span><span class='puntuaction'>,</span> <span class='keyword'>do:</span> <span class='number'>0</span>
+  <span class='reserved_word'>def</span> <span class='function'>fibonacci</span><span class='puntuaction'>(</span><span class='number'>1</span><span class='puntuaction'>)</span><span class='puntuaction'>,</span> <span class='keyword'>do:</span> <span class='number'>1</span>
+  <span class='reserved_word'>def</span> <span class='function'>fibonacci</span><span class='puntuaction'>(</span><span class='variable'>n</span><span class='puntuaction'>)</span> <span class='reserved_word'>do</span>
+    <span class='function'>fibonacci</span><span class='puntuaction'>(</span><span class='variable'>n</span> <span class='operator'>-</span> <span class='number'>1</span><span class='puntuaction'>)</span> <span class='operator'>+</span> <span class='function'>fibonacci</span><span class='puntuaction'>(</span><span class='variable'>n</span> <span class='operator'>-</span> <span class='number'>2</span><span class='puntuaction'>)</span>
+  <span class='reserved_word'>end</span>
+ 
+  <span class='comment'># Sum of a list using recursion</span>
+  <span class='reserved_word'>defp</span> <span class='function'>sum_list</span><span class='puntuaction'>(</span><span class='puntuaction'>[</span><span class='puntuaction'>]</span><span class='puntuaction'>,</span> <span class='variable'>acc</span><span class='puntuaction'>)</span><span class='puntuaction'>,</span> <span class='keyword'>do:</span> <span class='variable'>acc</span>
+  <span class='reserved_word'>defp</span> <span class='function'>sum_list</span><span class='puntuaction'>(</span><span class='puntuaction'>[</span><span class='variable'>head</span> <span class='operator'>|</span> <span class='variable'>tail</span><span class='puntuaction'>]</span><span class='puntuaction'>,</span> <span class='variable'>acc</span><span class='puntuaction'>)</span> <span class='reserved_word'>do</span>
+    <span class='function'>sum_list</span><span class='puntuaction'>(</span><span class='variable'>tail</span><span class='puntuaction'>,</span> <span class='variable'>acc</span> <span class='operator'>+</span> <span class='variable'>head</span><span class='puntuaction'>)</span>
+  <span class='reserved_word'>end</span>
+ 
+  <span class='reserved_word'>def</span> <span class='function'>sum</span><span class='puntuaction'>(</span><span class='variable'>list</span><span class='puntuaction'>)</span><span class='puntuaction'>,</span> <span class='keyword'>do:</span> <span class='function'>sum_list</span><span class='puntuaction'>(</span><span class='variable'>list</span><span class='puntuaction'>,</span> <span class='number'>0</span><span class='puntuaction'>)</span>
+ 
+  <span class='comment'># Circle area using @pi attribute</span>
+  <span class='reserved_word'>def</span> <span class='function'>circle_area</span><span class='puntuaction'>(</span><span class='variable'>radius</span><span class='puntuaction'>)</span> <span class='reserved_word'>do</span>
+    <span class='attribute'>@pi</span> <span class='operator'>*</span> <span class='variable'>radius</span> <span class='operator'>*</span> <span class='variable'>radius</span>
+  <span class='reserved_word'>end</span>
+ 
+  <span class='comment'># Check if a number is prime</span>
+  <span class='reserved_word'>def</span> <span class='function'>is_prime?</span><span class='puntuaction'>(</span><span class='variable'>n</span><span class='puntuaction'>)</span> <span class='reserved_word'>when</span> <span class='variable'>n</span> <span class='operator'>&lt;</span> <span class='number'>2</span><span class='puntuaction'>,</span> <span class='keyword'>do:</span> <span class='boolean'>false</span>
+  <span class='reserved_word'>def</span> <span class='function'>is_prime?</span><span class='puntuaction'>(</span><span class='number'>2</span><span class='puntuaction'>)</span><span class='puntuaction'>,</span> <span class='keyword'>do:</span> <span class='boolean'>true</span>
+  <span class='reserved_word'>def</span> <span class='function'>is_prime?</span><span class='puntuaction'>(</span><span class='variable'>n</span><span class='puntuaction'>)</span> <span class='reserved_word'>do</span>
+    <span class='variable'>limit</span> <span class='operator'>=</span> <span class='atom'>:math</span><span class='puntuaction'>.</span><span class='function'>sqrt</span><span class='puntuaction'>(</span><span class='variable'>n</span><span class='puntuaction'>)</span> <span class='operator'>|&gt;</span> <span class='function'>trunc</span><span class='puntuaction'>(</span><span class='puntuaction'>)</span>
+    <span class='reserved_word'>not</span> <span class='module'>Enum</span><span class='puntuaction'>.</span><span class='function'>any?</span><span class='puntuaction'>(</span><span class='number'>2</span><span class='puntuaction'>.</span><span class='puntuaction'>.</span><span class='variable'>limit</span><span class='puntuaction'>,</span> <span class='reserved_word'>fn</span> <span class='variable'>i</span> <span class='operator'>-&gt;</span> <span class='function'>rem</span><span class='puntuaction'>(</span><span class='variable'>n</span><span class='puntuaction'>,</span> <span class='variable'>i</span><span class='puntuaction'>)</span> <span class='operator'>==</span> <span class='number'>0</span> <span class='reserved_word'>end</span><span class='puntuaction'>)</span>
+  <span class='reserved_word'>end</span>
+ 
+  <span class='comment'># Convert hex string to integer</span>
+  <span class='reserved_word'>def</span> <span class='function'>hex_to_int</span><span class='puntuaction'>(</span><span class='variable'>hex_str</span><span class='puntuaction'>)</span> <span class='reserved_word'>do</span>
+    <span class='module'>String</span><span class='puntuaction'>.</span><span class='function'>to_integer</span><span class='puntuaction'>(</span><span class='variable'>hex_str</span><span class='puntuaction'>,</span> <span class='number'>0xFF</span><span class='puntuaction'>)</span>
+  <span class='reserved_word'>end</span>
+ 
+  <span class='comment'># Binary and octal literals</span>
+  <span class='reserved_word'>def</span> <span class='variable'>show_literals</span> <span class='reserved_word'>do</span>
+    <span class='variable'>binary</span>  <span class='operator'>=</span> <span class='number'>0b1010</span>
+    <span class='variable'>octal</span>   <span class='operator'>=</span> <span class='number'>0o777</span>
+    <span class='variable'>hex</span>     <span class='operator'>=</span> <span class='number'>0xFF</span>
+    <span class='variable'>float</span>   <span class='operator'>=</span> <span class='number'>1.5e3</span>
+    <span class='variable'>char</span>    <span class='operator'>=</span> <span class='number'>?A</span>
+    <span class='puntuaction'>{</span><span class='variable'>binary</span><span class='puntuaction'>,</span> <span class='variable'>octal</span><span class='puntuaction'>,</span> <span class='variable'>hex</span><span class='puntuaction'>,</span> <span class='variable'>float</span><span class='puntuaction'>,</span> <span class='variable'>char</span><span class='puntuaction'>}</span>
+  <span class='reserved_word'>end</span>
+ 
+<span class='reserved_word'>end</span>
+ 
+    </pre>
+  </body>
+</html>
