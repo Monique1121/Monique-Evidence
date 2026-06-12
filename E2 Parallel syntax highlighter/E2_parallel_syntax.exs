@@ -21,7 +21,7 @@ defmodule TecFiles do
         [string] = regex_string
         {:string, string}
 
-      # Charlist: 'texto'
+      # Charlist: 'text'
       regex_charlist = Regex.run(~r/\A'.*?'/, value) ->
         [charlist] = regex_charlist
         {:charlist, charlist}
